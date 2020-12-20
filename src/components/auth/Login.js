@@ -6,8 +6,12 @@ import FadeLoader from "react-spinners/FadeLoader";
 import { UserContext } from '../../App';
 import handleError from '../Input/ErrorHandler';
 import InputItem from '../Input/InputItem';
-import g from './g.svg';
-import { createUserWithEmailAndPassword, handleGoogleSignIn, initializeFirebase, signInWithEmailAndPassword } from './HandleLogin';
+import googleIcon from './googleIcon.svg';
+import facebookIcon from '../auth/FB-logo.png';
+import { createUserWithEmailAndPassword, handleFbSignIn, handleGoogleSignIn, initializeFirebase, signInWithEmailAndPassword } from './HandleLogin';
+
+
+
 initializeFirebase()
 const initUser = {
   firstName: '',
@@ -72,7 +76,26 @@ const Login = () => {
     }
     e.preventDefault();
   }
-
+  const facebookSignIn = () =>{
+    handleFbSignIn()
+    .then(function(result) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      console.log('facebook user', user);
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+    
+  }
   const googleSignIn = () => {
     handleGoogleSignIn()
       .then(res => {
@@ -173,7 +196,10 @@ const Login = () => {
           </Card>
           <div className="orr mt-2 w-75">Or</div>
           <div className="google-sign-in mt-2 w-75" onClick={googleSignIn}>
-            <span> Continue with google <img className="google" src={g} alt="google" /></span>
+            <span> Continue with google <img className="google" src={googleIcon} alt="google" /></span>
+          </div>
+          <div className="google-sign-in mt-2 w-75" onClick={facebookSignIn}>
+            <span> Continue with facebook <img className="facebook" src={facebookIcon} alt="google" /></span>
           </div>
         </Col>
       </Row>

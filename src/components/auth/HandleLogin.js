@@ -63,7 +63,28 @@ export const signInWithEmailAndPassword = ({ email, password }) => {
 
 export const handleGoogleSignIn = () => {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
+
   return firebase.auth().signInWithPopup(googleProvider)
+    .then(res => {
+      const {displayName, email, photoURL, emailVerified } = res.user;
+      const user = {
+        name: displayName,
+        email: email,
+        photo: photoURL,
+        emailVerified
+      }
+      return user;
+    })
+    .catch(error => {
+      const errors = {}
+      errors.error = error.message;
+      return errors;
+    });
+}
+
+export const handleFbSignIn = () => {
+  const facebookProvider = new firebase.auth.FacebookAuthProvider();
+  return firebase.auth().signInWithPopup(facebookProvider)
     .then(res => {
       const { displayName, email, photoURL, emailVerified } = res.user;
       const user = {
@@ -121,7 +142,6 @@ export const getCurrentUser = () => {
           emailVerified
         }
         resolve(currentUser)
-        // ...
       } else {
         resolve(user)
       }

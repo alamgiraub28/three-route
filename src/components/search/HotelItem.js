@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
-import str from './str.svg'
+import reviewIcon from './reviewIcon.svg'
 
 const HotelItem = () => {
   return (
@@ -21,7 +21,7 @@ peaceful stay</h4> <br />
           <p>Wif Air conditioning Kitchen</p>
           <p>Cancellation fexibility availiable</p>
           <div className="d-flex justify-content-between align-items-center ">
-            <span><img src={str} alt="" /> 4.9 (20)</span>
+            <span><img src={reviewIcon} alt="" /> 4.9 (20)</span>
             <span>${12}/per-night</span>
             <span>$167 total</span>
           </div>
