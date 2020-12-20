@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
 import locations from '../../fakeData';
 import HotelItem from './HotelItem';
+import Map from '../Map/Map';
 
 const Search = () => {
   const { id } = useParams();
@@ -32,7 +33,7 @@ const Search = () => {
         <Col sm={6} xl={5} className="mt-4">
           <Card className="mt-5">
             <Card.Body>
-              <h2>Maps here</h2>
+              <Map></Map>
             </Card.Body>
           </Card>
         </Col>
