@@ -76,14 +76,14 @@ const Login = () => {
     }
     e.preventDefault();
   }
-  const facebookSignIn = () =>{
+  const facebookSignIn = () => {
     handleFbSignIn()
     .then(function(result) {
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-      console.log('facebook user', user);
+     console.log(user);
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -94,8 +94,7 @@ const Login = () => {
       var credential = error.credential;
       // ...
     });
-    
-  }
+}
   const googleSignIn = () => {
     handleGoogleSignIn()
       .then(res => {
@@ -199,7 +198,7 @@ const Login = () => {
             <span> Continue with google <img className="google" src={googleIcon} alt="google" /></span>
           </div>
           <div className="google-sign-in mt-2 w-75" onClick={facebookSignIn}>
-            <span> Continue with facebook <img className="facebook" src={facebookIcon} alt="google" /></span>
+            <span> Continue with facebook <img className="facebook" src={facebookIcon} alt="facebook" /></span>
           </div>
         </Col>
       </Row>
